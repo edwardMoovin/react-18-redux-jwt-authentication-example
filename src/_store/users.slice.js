@@ -28,7 +28,7 @@ function createExtraActions() {
 
     return {
         getAll: getAll()
-    };    
+    };
 
     function getAll() {
         return createAsyncThunk(
@@ -40,7 +40,7 @@ function createExtraActions() {
 
 function createExtraReducers() {
     return {
-        ...getAll()
+       // ...getAll()
     };
 
     function getAll() {

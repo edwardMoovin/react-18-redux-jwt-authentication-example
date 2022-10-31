@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { history, fetchWrapper } from '_helpers';
+import { fetchWrapper, history } from '_helpers';
 
 // create slice
 
@@ -43,12 +43,12 @@ function createExtraActions() {
 
     return {
         login: login()
-    };    
+    };
 
     function login() {
         return createAsyncThunk(
             `${name}/login`,
-            async ({ username, password }) => await fetchWrapper.post(`${baseUrl}/authenticate`, { username, password })
+            async ({ username, password }) => await fetchWrapper.post(`${baseUrl}/login`, { username, password })
         );
     }
 }
@@ -66,7 +66,7 @@ function createExtraReducers() {
             },
             [fulfilled]: (state, action) => {
                 const user = action.payload;
-                
+
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 state.user = user;

@@ -1,4 +1,4 @@
-import { store, authActions } from '_store';
+import { authActions, store } from '_store';
 
 export const fetchWrapper = {
     get: request('GET'),
@@ -10,14 +10,15 @@ export const fetchWrapper = {
 function request(method) {
     return (url, body) => {
         const requestOptions = {
-            method,
+            method:method,
             headers: authHeader(url)
         };
-        if (body) {
+      if (body) {
             requestOptions.headers['Content-Type'] = 'application/json';
             requestOptions.body = JSON.stringify(body);
         }
-        return fetch(url, requestOptions).then(handleResponse);
+        var response = fetch(url, requestOptions).then(handleResponse);
+      return response;
     }
 }
 
@@ -40,6 +41,7 @@ function authToken() {
 }
 
 function handleResponse(response) {
+  console.log("prueba"+response)
     return response.text().then(text => {
         const data = text && JSON.parse(text);
 
