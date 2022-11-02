@@ -1,14 +1,16 @@
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
-import { history } from '_helpers';
-import { Nav, PrivateRoute } from '_components';
 import { Home } from 'home';
+import { ListWord } from 'listWord';
 import { Login } from 'login';
+import { SaveWord } from 'word';
+import { Nav, PrivateRoute } from '_components';
+import { history } from '_helpers';
 
 export { App };
 
 function App() {
-    // init custom history object to allow navigation from 
+    // init custom history object to allow navigation from
     // anywhere in the react app (inside or outside components)
     history.navigate = useNavigate();
     history.location = useLocation();
@@ -26,8 +28,10 @@ function App() {
                             </PrivateRoute>
                         }
                     />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="*" element={<Navigate to="/" />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/saveWord" element={<SaveWord />} />
+                  <Route path="/listWord" element={<ListWord />} />
+                  <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </div>
         </div>

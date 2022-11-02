@@ -46,10 +46,12 @@ function createExtraActions() {
     };
 
     function login() {
-        return createAsyncThunk(
+        let responseLogin = createAsyncThunk(
             `${name}/login`,
             async ({ username, password }) => await fetchWrapper.post(`${baseUrl}/login`, { username, password })
         );
+      console.log(responseLogin);
+      return responseLogin;
     }
 }
 
@@ -59,7 +61,7 @@ function createExtraReducers() {
     };
 
     function login() {
-        var { pending, fulfilled, rejected } = extraActions.login;
+        let { pending, fulfilled, rejected } = extraActions.login;
         return {
             [pending]: (state) => {
                 state.error = null;

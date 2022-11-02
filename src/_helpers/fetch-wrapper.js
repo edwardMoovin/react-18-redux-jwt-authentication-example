@@ -41,7 +41,7 @@ function authToken() {
 }
 
 function handleResponse(response) {
-  console.log("prueba"+response)
+   console.log("prueba"+response)
     return response.text().then(text => {
         const data = text && JSON.parse(text);
 

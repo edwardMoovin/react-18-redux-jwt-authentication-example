@@ -1,8 +1,8 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
 
 import { history } from '_helpers';
 import { authActions } from '_store';
@@ -21,7 +21,7 @@ function Login() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // form validation rules 
+    // form validation rules
     const validationSchema = Yup.object().shape({
         username: Yup.string().required('Username is required'),
         password: Yup.string().required('Password is required')
