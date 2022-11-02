@@ -54,8 +54,25 @@ function handleResponse(response) {
 
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
+        } else {
+          if (data.status = 'SUCCESS')
+          {
+            if (data.token != 'undefined')
+            {
+              return ok({
+                token: data.token
+              });
+            }
+            return data;
+          } else {
+            const error = (data && data.status);
+            return Promise.reject(error);
+          }
         }
 
-        return data;
+
     });
+  function ok(body) {
+     return Promise.resolve(JSON.stringify(body))
+  }
 }
